@@ -1,25 +1,56 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import ReactDOM from 'react-dom'
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch
+} from "react-router-dom"; //<-- These are all components from the router that we use in render().
+
+import AboutMe from './pages/AboutMe'
+import Skills from './pages/Skills'
+import Projects from './pages/Projects'
+import Contact from './pages/Contact'
+import TicTacToe from './pages/TicTacToe'
+import Home from './pages/Home'
+
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div >
+      <Router>
+        <div>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/about/">About Me</Link>
+              </li>
+              <li>
+                <Link to="/skills/">Skills</Link>
+              </li>
+              <li>
+                <Link to="/projects/">Projects</Link>
+              </li>
+              <li>
+                <Link to="/contact/">Contact</Link>
+              </li>
+            </ul>
+          </nav>
+
+          <Switch>
+            <Route path="/about/" component={AboutMe} />
+            <Route path="/skills/" component={Skills} />
+            <Route path="/projects/" exact component={Projects} />
+            <Route path="/contact/" component={Contact} />
+            <Route path="/projects/tictactoe/" component={TicTacToe} />
+            <Route path="/" exact component={Home} />
+          </Switch>
+        </div>
+      </Router>
       </div>
     );
   }
